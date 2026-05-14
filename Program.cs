@@ -1,27 +1,27 @@
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);  //WebApplicationBuilderの作成
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews();        // DIコンテナにMVCコントローラとビューを追加
 
-var app = builder.Build();
+var app = builder.Build();                         // WebApplicationを構築
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (!app.Environment.IsDevelopment())              // HTTPリクエストパイプラインの構成
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Home/Error");        // 開発環境でない場合にエラー
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.UseHttpsRedirection();  // httpsへのリダイレクト
+app.UseStaticFiles();       // 静的ファイルの利用
 
-app.UseRouting();
+app.UseRouting();           // ルーティングの有効化
 
-app.UseAuthorization();
+app.UseAuthorization();     // 認可を有効化
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(     // ルートパターンの設定
+    name: "default",        // ルートの名前
+    pattern: "{controller=Home}/{action=Index}/{id?}"); // URLパターン、何もしない場合Home/Indexを開く
 
-app.Run();
+app.Run();                  // アプリケーションの起動
