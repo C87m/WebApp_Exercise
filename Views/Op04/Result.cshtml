@@ -1,0 +1,17 @@
+@model Option04Form
+@{
+    ViewData["Title"] = "オプション演習-04 タグヘルパーを利用する";      
+}
+<h2>@ViewData["Title"]</h2>
+@* 入力された値を出力 *@
+<div class="d-flex flex-column align-items-center">
+    <h2>答え = @Model.Answer</h2>
+</div>
+@* [戻る]ボタン *@
+<div class="d-flex flex-column align-items-center">
+    <form asp-controller="Option04" asp-action="Back" method="get">
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">戻る</button>
+        </div>
+    </form>
+</div>

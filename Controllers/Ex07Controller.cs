@@ -11,7 +11,7 @@ public class Ex07Controller : Controller
     /// <param name="form">入力値を保持するViewModel</param>
     /// <returns></returns>
     [HttpPost("Calc")]
-    public IActionResult Calc(Exercise07Form form)
+    public IActionResult Calc(Exercise07Form form)  // ViewModelのExercise07formクラスから受け取る、インスタンス生成・値代入済み
     {
         var result = form.Value1 + form.Value2;
         return Content($"{form.Value1} + {form.Value2} = {result}");
