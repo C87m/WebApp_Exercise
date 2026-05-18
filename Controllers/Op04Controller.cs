@@ -43,10 +43,20 @@ public class Op04Controller : Controller
             return View(form);
             
             case 4:
+            if(form.Value2 == 0)
+                {
+                    ModelState.AddModelError("Value", "ゼロ除算エラー");
+                    return View(form);
+                }
             form.Answer = form.Value1 / form.Value2; 
             return View(form);
         
             case 5:
+            if(form.Value2 == 0)
+                {
+                    ModelState.AddModelError("Value", "ゼロ除算エラー");
+                    return View(form);
+                }
             form.Answer = form.Value1 % form.Value2;
             return View(form);
         

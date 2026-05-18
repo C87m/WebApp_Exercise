@@ -20,18 +20,22 @@ public class Ex09Controller : Controller
     }
 
     /// <summary>
-    /// [計算]ボタンクリックアクション
+    /// 計算処理と結果画面表示アクション
     /// </summary>
     /// <returns></returns>
-    [HttpPost("Result")]
-    public IActionResult Result(Exercise07Form form)
+    [HttpGet("Result")]
+    public IActionResult Result()
     {
-        // バリデーションチェック
-        if (!ModelState.IsValid)
+        // TempDataからExercise07Formを取り出す
+        string? json = (string ) TempData["Exercise07Form"]!;
+        if (string.IsNullOrEmpty(json))
         {
-            return View("Enter",form);
+            // TempDataにExercise07Formが無い場合、入力画面表示にリダイレクトする
+            return RedirectToAction("Enter");
         }
-        form.Answer = form.Value1 + form.Value2;
+        // 存在する場合はデシリアライズする
+        var form = JsonSerializer.Deserialize<Exercise07Form>(json);
+        form!.Answer = form.Value1 + form.Value2;
         return View(form);
     }
 
