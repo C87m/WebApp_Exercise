@@ -4,12 +4,13 @@ using WebApp_Exercise_Answer.Presentations.Middlewares;
 var builder = WebApplication.CreateBuilder(args);  //WebApplicationBuilderの作成
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();  
-builder.Services.SettingDependencyInjection(builder.Configuration);      // DIコンテナにMVCコントローラとビューを追加
+builder.Services.AddControllersWithViews();        // DIコンテナにMVCコントローラとビューを追加
 
-var app = builder.Build(); 
+builder.Services.SettingDependencyInjection(builder.Configuration);  // 依存定義および依存性注入 
 
-app.UseMiddleware<InternalExceptionLoggingMiddleware>();                        // WebApplicationを構築
+var app = builder.Build();   // WebApplicationを構築
+
+app.UseMiddleware<InternalExceptionLoggingMiddleware>(); 
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())              // HTTPリクエストパイプラインの構成
