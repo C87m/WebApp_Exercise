@@ -24,7 +24,7 @@ IConverter<Item, ItemEntity>, IRestorer<Item, ItemEntity>
         }
         return new ItemEntity
         {
-            Id = domain.Id ?? 0,
+            Id = domain.Id,
             Name = domain.Name,
             Price = domain.Price,                 // nullはnullのまま
             CategoryId = domain.ItemCategory?.Id,  // null安全
